@@ -120,10 +120,10 @@ const Settings = () => {
                   marginBottom: "0.15rem",
                 }}
               >
-                <i className={`bi ${
-                  tab === "Profile"       ? "bi-person-fill"    :
-                  tab === "Password"      ? "bi-lock-fill"      :
-                  "bi-bell-fill"
+                <i className={`fas ${
+                  tab === "Profile"       ? "fa-user"    :
+                  tab === "Password"      ? "fa-lock"      :
+                  "fa-bell"
                 }`} style={{ fontSize: "0.95rem" }}></i>
                 {tab}
               </button>
@@ -159,15 +159,15 @@ const Settings = () => {
 
               <div className="row g-3">
                 {[
-                  { label: "Full Name",    name: "fullName",    type: "text",  icon: "bi-person",      editable: true  },
-                  { label: "Username",     name: "username",    type: "text",  icon: "bi-at",          editable: false },
-                  { label: "Email",        name: "email",       type: "email", icon: "bi-envelope",    editable: false },
-                  { label: "Phone Number", name: "phoneNumber", type: "tel",   icon: "bi-phone",       editable: true  },
+                  { label: "Full Name",    name: "fullName",    type: "text",  icon: "fa-user",      editable: true  },
+                  { label: "Username",     name: "username",    type: "text",  icon: "fa-at",          editable: false },
+                  { label: "Email",        name: "email",       type: "email", icon: "fa-envelope",    editable: false },
+                  { label: "Phone Number", name: "phoneNumber", type: "tel",   icon: "fa-phone",       editable: true  },
                 ].map(({ label, name, type, icon, editable }) => (
                   <div key={name} className="col-12 col-sm-6">
                     <label className="sfa-label">{label}</label>
                     <div className="sfa-input-group" style={!editable ? { background: "var(--bg)", opacity: 0.7 } : {}}>
-                      <span className="sfa-input-icon"><i className={`bi ${icon}`}></i></span>
+                      <span className="sfa-input-icon"><i className={`fas ${icon}`}></i></span>
                       <input
                         type={type}
                         className="sfa-field"
@@ -177,7 +177,7 @@ const Settings = () => {
                       />
                       {!editable && (
                         <span style={{ padding: "0 0.75rem" }}>
-                          <i className="bi bi-lock" style={{ fontSize: "0.8rem", color: "var(--text-light)" }}></i>
+                          <i className="fas fa-lock" style={{ fontSize: "0.8rem", color: "var(--text-light)" }}></i>
                         </span>
                       )}
                     </div>
@@ -190,12 +190,12 @@ const Settings = () => {
 
               {profileSaved && (
                 <div className="d-flex align-items-center gap-2 mt-3 p-3 rounded-3" style={{ background: "var(--green-bg)", border: "1px solid rgba(46,158,107,0.2)", fontSize: "0.85rem", color: "var(--green)" }}>
-                  <i className="bi bi-check-circle-fill"></i> Profile updated successfully!
+                  <i className="fas fa-check-circle"></i> Profile updated successfully!
                 </div>
               )}
 
               <button className="sfa-btn-primary mt-4" onClick={handleProfileSave} disabled={profileLoading}>
-                {profileLoading ? <><span className="spinner-border spinner-border-sm me-2" />Saving...</> : <><i className="bi bi-check2 me-2"></i>Save Changes</>}
+                {profileLoading ? <><span className="spinner-border spinner-border-sm me-2" />Saving...</> : <><i className="fas fa-check me-2"></i>Save Changes</>}
               </button>
             </div>
           )}
@@ -210,7 +210,7 @@ const Settings = () => {
 
               {pwError && (
                 <div className="d-flex align-items-center gap-2 mb-3 p-3 rounded-3" style={{ background: "var(--red-bg)", border: "1px solid rgba(192,57,43,0.2)", fontSize: "0.85rem", color: "var(--red)" }}>
-                  <i className="bi bi-exclamation-circle-fill flex-shrink-0"></i> {pwError}
+                  <i className="fas fa-exclamation-circle flex-shrink-0"></i> {pwError}
                 </div>
               )}
 
@@ -222,7 +222,7 @@ const Settings = () => {
                 <div key={name} className="mb-3">
                   <label className="sfa-label">{label}</label>
                   <div className="sfa-input-group">
-                    <span className="sfa-input-icon"><i className="bi bi-lock"></i></span>
+                    <span className="sfa-input-icon"><i className="fas fa-lock"></i></span>
                     <input
                       type={showPw[name] ? "text" : "password"}
                       className="sfa-field"
@@ -231,7 +231,7 @@ const Settings = () => {
                       onChange={(e) => { setPasswords(p => ({ ...p, [name]: e.target.value })); setPwError(""); }}
                     />
                     <button className="sfa-input-toggle" onClick={() => setShowPw(p => ({ ...p, [name]: !p[name] }))}>
-                      <i className={`bi ${showPw[name] ? "bi-eye-slash" : "bi-eye"}`}></i>
+                      <i className={`fas ${showPw[name] ? "fa-eye-slash" : "fa-eye"}`}></i>
                     </button>
                   </div>
                 </div>
@@ -239,12 +239,12 @@ const Settings = () => {
 
               {pwSaved && (
                 <div className="d-flex align-items-center gap-2 mb-3 p-3 rounded-3" style={{ background: "var(--green-bg)", border: "1px solid rgba(46,158,107,0.2)", fontSize: "0.85rem", color: "var(--green)" }}>
-                  <i className="bi bi-check-circle-fill"></i> Password changed successfully!
+                  <i className="fas fa-check-circle"></i> Password changed successfully!
                 </div>
               )}
 
               <button className="sfa-btn-primary mt-2" onClick={handlePasswordSave} disabled={pwLoading}>
-                {pwLoading ? <><span className="spinner-border spinner-border-sm me-2" />Updating...</> : <><i className="bi bi-shield-check me-2"></i>Update Password</>}
+                {pwLoading ? <><span className="spinner-border spinner-border-sm me-2" />Updating...</> : <><i className="fas fa-shield-alt me-2"></i>Update Password</>}
               </button>
             </div>
           )}
@@ -265,12 +265,12 @@ const Settings = () => {
 
               {notifSaved && (
                 <div className="d-flex align-items-center gap-2 mt-3 p-3 rounded-3" style={{ background: "var(--green-bg)", border: "1px solid rgba(46,158,107,0.2)", fontSize: "0.85rem", color: "var(--green)" }}>
-                  <i className="bi bi-check-circle-fill"></i> Preferences saved!
+                  <i className="fas fa-check-circle"></i> Preferences saved!
                 </div>
               )}
 
               <button className="sfa-btn-primary mt-4" onClick={handleNotifSave}>
-                <i className="bi bi-check2 me-2"></i>Save Preferences
+                <i className="fas fa-check me-2"></i>Save Preferences
               </button>
             </div>
           )}

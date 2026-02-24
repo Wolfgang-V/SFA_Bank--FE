@@ -35,7 +35,7 @@ const Navbar = ({ onMenuToggle, menuOpen }) => {
         
         <div className="d-flex align-items-center gap-2 d-lg-none">
           <div className="sfa-landing-logo-icon" style={{ width: 28, height: 28, fontSize: "0.85rem" }}>
-            <i className="bi bi-bank2"></i>
+            <i className="fas fa-university"></i>
           </div>
           <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: "0.95rem", color: "var(--gold-dark)" }}>
             SFA Bank
@@ -50,7 +50,7 @@ const Navbar = ({ onMenuToggle, menuOpen }) => {
 
          
           <button type="button" className="sfa-nav-bell" title="Notifications">
-            <i className="bi bi-bell" style={{ fontSize: "1rem" }}></i>
+            <i className="fas fa-bell" style={{ fontSize: "1rem" }}></i>
             <span
               style={{
                 position: "absolute", top: 6, right: 6,
@@ -82,7 +82,7 @@ const Navbar = ({ onMenuToggle, menuOpen }) => {
                 </div>
               </div>
               <i
-                className={`bi bi-chevron-down d-none d-md-block`}
+                className={`fas fa-chevron-down d-none d-md-block`}
                 style={{ fontSize: "0.7rem", color: "var(--text-muted)", transition: "transform 0.2s", transform: dropdownOpen ? "rotate(180deg)" : "rotate(0)" }}
               />
             </button>
@@ -119,9 +119,9 @@ const Navbar = ({ onMenuToggle, menuOpen }) => {
                   </div>
 
                   {[
-                    { to: "/dashboard", icon: "bi-grid-1x2",     label: "Dashboard"  },
-                    { to: "/settings",  icon: "bi-person-circle", label: "Profile"    },
-                    { to: "/security",  icon: "bi-shield-lock",   label: "Security"   },
+                    { to: "/dashboard", icon: "fa-th",     label: "Dashboard"  },
+                    { to: "/settings",  icon: "fa-user-circle", label: "Profile"    },
+                    { to: "/security",  icon: "fa-shield-alt",   label: "Security"   },
                   ].map(({ to, icon, label }) => (
                     <Link
                       key={to}
@@ -138,7 +138,7 @@ const Navbar = ({ onMenuToggle, menuOpen }) => {
                       onMouseEnter={e => e.currentTarget.style.background = "var(--gold-bg)"}
                       onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                     >
-                      <i className={`bi ${icon}`} style={{ color: "var(--gold-dark)", fontSize: "0.9rem" }}></i>
+                      <i className={`fas ${icon}`} style={{ color: "var(--gold-dark)", fontSize: "0.9rem" }}></i>
                       {label}
                     </Link>
                   ))}
@@ -158,7 +158,7 @@ const Navbar = ({ onMenuToggle, menuOpen }) => {
                     onMouseEnter={e => e.currentTarget.style.background = "var(--red-bg)"}
                     onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                   >
-                    <i className="bi bi-box-arrow-right" style={{ fontSize: "0.9rem" }}></i>
+                    <i className="fas fa-sign-out-alt" style={{ fontSize: "0.9rem" }}></i>
                     Sign Out
                   </button>
                 </div>

@@ -2,12 +2,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const navItems = [
-  { to: "/dashboard", label: "Dashboard", icon: "bi-grid-1x2-fill"    },
-  { to: "/accounts",  label: "Accounts",  icon: "bi-wallet2"           },
-  { to: "/transfer",  label: "Transfer",  icon: "bi-arrow-left-right"  },
-  { to: "/bills",     label: "Bills",     icon: "bi-receipt-cutoff"    },
-  { to: "/settings",  label: "Settings",  icon: "bi-gear-fill"         },
-  { to: "/security",  label: "Security",  icon: "bi-shield-lock-fill"  },
+  { to: "/dashboard", label: "Dashboard", icon: "fa-th"    },
+  { to: "/accounts",  label: "Accounts",  icon: "fa-wallet"           },
+  { to: "/transfer",  label: "Transfer",  icon: "fa-exchange-alt"  },
+  { to: "/bills",     label: "Bills",     icon: "fa-receipt"    },
+  { to: "/settings",  label: "Settings",  icon: "fa-cog"         },
+  { to: "/security",  label: "Security",  icon: "fa-shield-alt"  },
 ];
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -33,7 +33,7 @@ const Sidebar = ({ isOpen, onClose }) => {
        
         <div className="sfa-sidebar-brand">
           <div className="sfa-sidebar-logo">
-            <i className="bi bi-bank2"></i>
+            <i className="fas fa-university"></i>
           </div>
           <div>
             <div className="sfa-sidebar-name">SFA Bank</div>
@@ -54,7 +54,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               }
               onClick={onClose} 
             >
-              <i className={`bi ${icon}`}></i>
+              <i className={`fas ${icon}`}></i>
               <span>{label}</span>
             </NavLink>
           ))}
@@ -88,7 +88,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
           
           <button type="button" className="sfa-nav-logout" onClick={handleLogout}>
-            <i className="bi bi-box-arrow-left"></i>
+            <i className="fas fa-sign-out-alt"></i>
             <span>Sign Out</span>
           </button>
         </div>

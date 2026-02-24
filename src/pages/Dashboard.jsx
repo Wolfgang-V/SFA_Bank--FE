@@ -7,10 +7,10 @@ import { fetchTransactions } from "../services/transactionService";
 
 
 const quickActions = [
-  { to: "/transfer", icon: "bi-arrow-left-right",  label: "Transfer",    color: "#0d6efd", bg: "rgba(13,110,253,0.1)"  },
-  { to: "/bills",    icon: "bi-receipt-cutoff",     label: "Pay Bills",   color: "#f0a500", bg: "rgba(240,165,0,0.1)"   },
-  { to: "/accounts", icon: "bi-wallet2",            label: "Accounts",    color: "#22c55e", bg: "rgba(34,197,94,0.1)"   },
-  { to: "/settings", icon: "bi-gear-fill",          label: "Settings",    color: "#8b5cf6", bg: "rgba(139,92,246,0.1)"  },
+  { to: "/transfer", icon: "fa-exchange-alt",  label: "Transfer",    color: "#0d6efd", bg: "rgba(13,110,253,0.1)"  },
+  { to: "/bills",    icon: "fa-receipt",       label: "Pay Bills",   color: "#f0a500", bg: "rgba(240,165,0,0.1)"   },
+  { to: "/accounts", icon: "fa-wallet",        label: "Accounts",    color: "#22c55e", bg: "rgba(34,197,94,0.1)"   },
+  { to: "/settings", icon: "fa-cog",           label: "Settings",    color: "#8b5cf6", bg: "rgba(139,92,246,0.1)"  },
 ];
 
 
@@ -33,16 +33,16 @@ const BalanceCard = ({ account, user }) => {
             className="badge"
             style={{ background: "rgba(255,255,255,0.2)", fontSize: "0.72rem", padding: "0.35em 0.7em" }}
           >
-            <i className="bi bi-circle-fill me-1" style={{ fontSize: "0.5rem", color: "#4ade80" }}></i>
+            <i className="fas fa-circle me-1" style={{ fontSize: "0.5rem", color: "#4ade80" }}></i>
             Active
           </span>
         </div>
       </div>
 
       
-      <div className="mb-1" style={{ fontSize: "0.78rem", opacity: 0.7 }}>Available Balance</div>
+      <div className="mb-1" style={{ fontSize: "0.78rem", opacity: 0.7, color: "white" }}>Available Balance</div>
       <div className="d-flex align-items-center gap-3 mb-4">
-        <h2 className="mb-0 fw-bold" style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)", letterSpacing: "-0.02em" }}>
+        <h2 className="mb-0 fw-bold" style={{ fontSize: "clamp(1.6rem, 4vw, 2.2rem)", letterSpacing: "-0.02em", color: "white" }}>
           {balanceVisible ? formatCurrency(account.balance) : "₦ ••••••••"}
         </h2>
         <button
@@ -51,7 +51,7 @@ const BalanceCard = ({ account, user }) => {
           onClick={() => setBalanceVisible(!balanceVisible)}
           title={balanceVisible ? "Hide balance" : "Show balance"}
         >
-          <i className={`bi ${balanceVisible ? "bi-eye-slash" : "bi-eye"}`}></i>
+          <i className={`fas ${balanceVisible ? "fa-eye-slash" : "fa-eye"}`}></i>
         </button>
       </div>
 
@@ -60,7 +60,7 @@ const BalanceCard = ({ account, user }) => {
         <div style={{ fontSize: "0.82rem", opacity: 0.75, letterSpacing: "0.12em" }}>
           {account.accountNumber.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")}
         </div>
-        <i className="bi bi-bank2" style={{ fontSize: "1.4rem", opacity: 0.5 }}></i>
+        <i className="fas fa-university" style={{ fontSize: "1.4rem", opacity: 0.5 }}></i>
       </div>
     </div>
   );
@@ -80,7 +80,7 @@ const QuickActions = () => (
               className="mx-auto mb-2 d-flex align-items-center justify-content-center"
               style={{ width: 46, height: 46, borderRadius: 14, background: bg }}
             >
-              <i className={`bi ${icon}`} style={{ fontSize: "1.25rem", color }}></i>
+              <i className={`fas ${icon}`} style={{ fontSize: "1.25rem", color }}></i>
             </div>
             <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "#1e293b" }}>{label}</div>
           </Link>
@@ -99,14 +99,14 @@ const StatsRow = ({ transactions }) => {
   return (
     <div className="row g-3 mb-4">
       {[
-        { label: "Money In",        value: formatCurrency(totalIn),  icon: "bi-arrow-down-circle-fill", color: "#22c55e", bg: "rgba(34,197,94,0.08)"   },
-        { label: "Money Out",       value: formatCurrency(totalOut), icon: "bi-arrow-up-circle-fill",   color: "#ef4444", bg: "rgba(239,68,68,0.08)"    },
-        { label: "Pending",         value: `${pending} transaction${pending !== 1 ? "s" : ""}`, icon: "bi-clock-fill", color: "#f59e0b", bg: "rgba(245,158,11,0.08)" },
+        { label: "Money In",        value: formatCurrency(totalIn),  icon: "fa-arrow-circle-down", color: "#22c55e", bg: "rgba(34,197,94,0.08)"   },
+        { label: "Money Out",       value: formatCurrency(totalOut), icon: "fa-arrow-circle-up",   color: "#ef4444", bg: "rgba(239,68,68,0.08)"    },
+        { label: "Pending",         value: `${pending} transaction${pending !== 1 ? "s" : ""}`, icon: "fa-clock", color: "#f59e0b", bg: "rgba(245,158,11,0.08)" },
       ].map(({ label, value, icon, color, bg }) => (
         <div key={label} className="col-12 col-sm-4">
           <div className="sfa-card d-flex align-items-center gap-3 py-3">
             <div style={{ width: 42, height: 42, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              <i className={`bi ${icon}`} style={{ fontSize: "1.1rem", color }}></i>
+              <i className={`fas ${icon}`} style={{ fontSize: "1.1rem", color }}></i>
             </div>
             <div>
               <div style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em" }}>{label}</div>
@@ -136,7 +136,7 @@ const RecentTransactions = ({ transactions }) => {
 
       {transactions.length === 0 ? (
         <div className="text-center py-5">
-          <i className="bi bi-inbox" style={{ fontSize: "2.5rem", color: "#cbd5e1" }}></i>
+          <i className="fas fa-inbox" style={{ fontSize: "2.5rem", color: "#cbd5e1" }}></i>
           <p className="text-muted mt-2 mb-0" style={{ fontSize: "0.88rem" }}>No transactions yet</p>
         </div>
       ) : (
@@ -158,7 +158,7 @@ const RecentTransactions = ({ transactions }) => {
                 }}
               >
                 <i
-                  className={`bi ${getTransactionIcon(tx.transactionType)}`}
+                  className={`fas ${getTransactionIcon(tx.transactionType)}`}
                   style={{ fontSize: "1rem", color: isDebit(tx.transactionType) ? "#ef4444" : "#22c55e" }}
                 ></i>
               </div>
@@ -255,7 +255,7 @@ const Dashboard = () => {
   if (error) {
     return (
       <div className="text-center py-5">
-        <i className="bi bi-exclamation-circle text-danger" style={{ fontSize: "3rem" }}></i>
+        <i className="fas fa-exclamation-circle text-danger" style={{ fontSize: "3rem" }}></i>
         <p className="text-danger mt-3">{error}</p>
         <button className="btn btn-primary" onClick={() => window.location.reload()}>
           Try Again
@@ -267,7 +267,7 @@ const Dashboard = () => {
   if (!account) {
     return (
       <div className="text-center py-5">
-        <i className="bi bi-wallet2" style={{ fontSize: "3rem", color: "#cbd5e1" }}></i>
+        <i className="fas fa-wallet" style={{ fontSize: "3rem", color: "#cbd5e1" }}></i>
         <p className="text-muted mt-3">No account found</p>
       </div>
     );
@@ -279,7 +279,7 @@ const Dashboard = () => {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h4 className="fw-bold mb-0" style={{ fontFamily: "'Sora', sans-serif" }}>
-            {greeting}, {user?.fullName?.split(" ")[0] || user?.username} 👋
+            {greeting}, {user?.fullName?.split(" ")[0] || user?.username} <i className="fas fa-hand-wave ms-1" style={{ color: "#c9a84c" }}></i>
           </h4>
           <p className="text-muted mb-0" style={{ fontSize: "0.88rem" }}>
             Here's your financial overview
@@ -287,7 +287,7 @@ const Dashboard = () => {
         </div>
         <Link to="/transfer" className="btn d-none d-md-flex align-items-center gap-2"
           style={{ background: "linear-gradient(135deg, #0d6efd, #0a4fc4)", color: "white", borderRadius: 10, fontWeight: 600, fontSize: "0.88rem", border: "none" }}>
-          <i className="bi bi-plus-lg"></i> New Transfer
+          <i className="fas fa-plus"></i> New Transfer
         </Link>
       </div>
 

@@ -184,7 +184,7 @@ const Transfer = () => {
   if (!account) {
     return (
       <div className="text-center py-5">
-        <i className="bi bi-wallet2" style={{ fontSize: "3rem", color: "#cbd5e1" }}></i>
+        <i className="fas fa-wallet" style={{ fontSize: "3rem", color: "#cbd5e1" }}></i>
         <p className="text-muted mt-3">No account found</p>
       </div>
     );
@@ -212,7 +212,7 @@ const Transfer = () => {
 
               {(error || transferError) && (
                 <div className="d-flex align-items-center gap-2 mb-3 p-3 rounded-3" style={{ background: "var(--red-bg)", border: "1px solid rgba(192,57,43,0.2)", fontSize: "0.85rem", color: "var(--red)" }}>
-                  <i className="bi bi-exclamation-circle-fill flex-shrink-0"></i>
+                  <i className="fas fa-exclamation-circle flex-shrink-0"></i>
                   {error || transferError}
                 </div>
               )}
@@ -230,7 +230,7 @@ const Transfer = () => {
                         {formatCurrency(account.balance || 0)}
                       </div>
                     </div>
-                    <i className="bi bi-wallet2" style={{ fontSize: "1.4rem", color: "var(--gold)" }}></i>
+                    <i className="fas fa-wallet" style={{ fontSize: "1.4rem", color: "var(--gold)" }}></i>
                   </div>
                 </div>
               </div>
@@ -239,7 +239,7 @@ const Transfer = () => {
               <div className="mb-3">
                 <label className="sfa-label">Receiver Account Number</label>
                 <div className="sfa-input-group">
-                  <span className="sfa-input-icon"><i className="bi bi-person-fill"></i></span>
+                  <span className="sfa-input-icon"><i className="fas fa-user"></i></span>
                   <input
                     type="text" name="receiverAccount"
                     className="sfa-field"
@@ -256,14 +256,14 @@ const Transfer = () => {
                   )}
                   {lookupState === "found" && (
                     <span style={{ padding: "0 0.75rem", color: "var(--green)" }}>
-                      <i className="bi bi-check-circle-fill"></i>
+                      <i className="fas fa-check-circle"></i>
                     </span>
                   )}
                 </div>
                 
                 {lookupState === "found" && (
                   <div className="d-flex align-items-center gap-2 mt-2" style={{ fontSize: "0.83rem", color: "var(--green)", fontWeight: 600 }}>
-                    <i className="bi bi-person-check-fill"></i>
+                    <i className="fas fa-user-check"></i>
                     {receiverName}
                   </div>
                 )}
@@ -296,7 +296,7 @@ const Transfer = () => {
                   Description <span style={{ color: "var(--text-light)", fontWeight: 400 }}>(optional)</span>
                 </label>
                 <div className="sfa-input-group">
-                  <span className="sfa-input-icon"><i className="bi bi-chat-left-text"></i></span>
+                  <span className="sfa-input-icon"><i className="fas fa-comment-alt"></i></span>
                   <input
                     type="text" name="description"
                     className="sfa-field"
@@ -309,7 +309,7 @@ const Transfer = () => {
               </div>
 
               <button className="sfa-btn-primary w-100 sfa-btn-lg" onClick={handleProceed}>
-                Continue <i className="bi bi-arrow-right ms-1"></i>
+                Continue <i className="fas fa-arrow-right ms-1"></i>
               </button>
             </div>
           )}
@@ -350,7 +350,7 @@ const Transfer = () => {
               <div className="mb-4">
                 <label className="sfa-label">Enter Transaction PIN</label>
                 <div className="sfa-input-group">
-                  <span className="sfa-input-icon"><i className="bi bi-lock-fill"></i></span>
+                  <span className="sfa-input-icon"><i className="fas fa-lock"></i></span>
                   <input
                     type="password"
                     className="sfa-field"
@@ -363,25 +363,25 @@ const Transfer = () => {
                 </div>
                 {error && (
                   <div className="d-flex align-items-center gap-2 mt-2" style={{ fontSize: "0.8rem", color: "var(--red)" }}>
-                    <i className="bi bi-exclamation-circle"></i>
+                    <i className="fas fa-exclamation-circle"></i>
                     {error}
                   </div>
                 )}
               </div>
 
               <div className="sfa-notice mb-4">
-                <i className="bi bi-info-circle-fill" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
+                <i className="fas fa-info-circle" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
                 Please confirm the beneficiary name before proceeding. Transfers cannot be reversed.
               </div>
 
               <div className="d-flex gap-3">
                 <button className="sfa-btn-silver flex-grow-1" onClick={() => setStep(STEPS.FORM)} disabled={transferLoading}>
-                  <i className="bi bi-arrow-left me-1"></i> Back
+                  <i className="fas fa-arrow-left me-1"></i> Back
                 </button>
                 <button className="sfa-btn-primary flex-grow-1 sfa-btn-lg" onClick={handleConfirm} disabled={transferLoading}>
                   {transferLoading
                     ? <><span className="spinner-border spinner-border-sm me-2" />Processing...</>
-                    : <><i className="bi bi-send-fill me-2"></i>Confirm Transfer</>
+                    : <><i className="fas fa-paper-plane me-2"></i>Confirm Transfer</>
                   }
                 </button>
               </div>
@@ -397,7 +397,7 @@ const Transfer = () => {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 margin: "0 auto 1.25rem",
               }}>
-                <i className="bi bi-shield-lock" style={{ fontSize: "2rem", color: "var(--gold)" }}></i>
+                <i className="fas fa-shield-alt" style={{ fontSize: "2rem", color: "var(--gold)" }}></i>
               </div>
 
               <h5 className="font-sora fw-bold mb-1">Set Up Transaction PIN</h5>
@@ -426,7 +426,7 @@ const Transfer = () => {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 margin: "0 auto 1.25rem",
               }}>
-                <i className="bi bi-check-lg" style={{ fontSize: "2rem", color: "var(--green)" }}></i>
+                <i className="fas fa-check" style={{ fontSize: "2rem", color: "var(--green)" }}></i>
               </div>
 
               <h5 className="font-sora fw-bold mb-1">Transfer Successful!</h5>
@@ -439,7 +439,7 @@ const Transfer = () => {
                   { label: "Amount",     value: formatCurrency(Number(form.amount)) },
                   { label: "To",         value: `${receiverName} (${form.receiverAccount})` },
                   { label: "Reference",  value: reference },
-                  { label: "Status",     value: "✅ Successful" },
+                  { label: "Status",     value: "✓ Successful" },
                 ].map(({ label, value }) => (
                   <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "0.45rem 0", borderBottom: "1px solid var(--border-light)", fontSize: "0.85rem" }}>
                     <span style={{ color: "var(--text-muted)" }}>{label}</span>
@@ -467,7 +467,7 @@ const Transfer = () => {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 margin: "0 auto 1.25rem",
               }}>
-                <i className="bi bi-x-lg" style={{ fontSize: "2rem", color: "var(--red)" }}></i>
+                <i className="fas fa-times" style={{ fontSize: "2rem", color: "var(--red)" }}></i>
               </div>
 
               <h5 className="font-sora fw-bold mb-1">Transfer Failed</h5>
@@ -491,7 +491,7 @@ const Transfer = () => {
         <div className="col-12 col-lg-5">
           <div className="sfa-card mb-3" style={{ background: "linear-gradient(145deg, #fffdf5, #fdf6e0)", border: "1px solid var(--border-gold)" }}>
             <h6 className="font-sora fw-bold mb-3" style={{ fontSize: "0.88rem", color: "var(--gold-dark)" }}>
-              <i className="bi bi-shield-check me-2"></i>Transfer Limits
+              <i className="fas fa-shield-alt me-2"></i>Transfer Limits
             </h6>
             {[
               { label: "Single Transfer",  value: "₦500,000" },
@@ -507,7 +507,7 @@ const Transfer = () => {
 
           <div className="sfa-card">
             <h6 className="font-sora fw-bold mb-3" style={{ fontSize: "0.88rem" }}>
-              <i className="bi bi-lightbulb me-2" style={{ color: "var(--gold)" }}></i>Quick Tips
+              <i className="fas fa-lightbulb me-2" style={{ color: "var(--gold)" }}></i>Quick Tips
             </h6>
             {[
               "Always verify the beneficiary name before confirming",
@@ -516,7 +516,7 @@ const Transfer = () => {
               "Contact support if a transfer fails but funds are debited",
             ].map((tip, i) => (
               <div key={i} className="d-flex gap-2 mb-2" style={{ fontSize: "0.83rem", color: "var(--text-3)" }}>
-                <i className="bi bi-dot" style={{ color: "var(--gold)", flexShrink: 0, marginTop: 1 }}></i>
+                <i className="fas fa-circle" style={{ color: "var(--gold)", flexShrink: 0, marginTop: 1, fontSize: "0.5rem" }}></i>
                 {tip}
               </div>
             ))}

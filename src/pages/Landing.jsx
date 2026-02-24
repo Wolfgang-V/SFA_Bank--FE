@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const features = [
-  { icon: "bi-arrow-left-right", title: "Instant Transfers", desc: "Send money to any account in seconds, 24/7." },
-  { icon: "bi-receipt-cutoff",   title: "Bill Payments",    desc: "Pay electricity, internet, cable and more from one place." },
-  { icon: "bi-shield-lock-fill", title: "Bank-Grade Security", desc: "2FA, transaction limits, and account lockout protection." },
-  { icon: "bi-graph-up-arrow",   title: "Transaction History", desc: "Full history of every transaction with search and filters." },
+  { icon: "fa-exchange-alt", title: "Instant Transfers", desc: "Send money to any account in seconds, 24/7." },
+  { icon: "fa-receipt",      title: "Bill Payments",    desc: "Pay electricity, internet, cable and more from one place." },
+  { icon: "fa-shield-alt",   title: "Bank-Grade Security", desc: "2FA, transaction limits, and account lockout protection." },
+  { icon: "fa-chart-line",   title: "Transaction History", desc: "Full history of every transaction with search and filters." },
 ];
 
 const Landing = () => {
@@ -27,7 +27,7 @@ const Landing = () => {
         <div className="container d-flex align-items-center justify-content-between py-3">
           <div className="d-flex align-items-center gap-2">
             <div className="sfa-landing-logo-icon">
-              <i className="bi bi-bank2"></i>
+              <i className="fas fa-university"></i>
             </div>
             <span className="sfa-landing-brand">SFA Bank</span>
           </div>
@@ -44,20 +44,20 @@ const Landing = () => {
           <div className="row align-items-center min-vh-100">
             <div className="col-lg-6 sfa-hero-content">
               <div className="sfa-hero-badge mb-3">
-                <i className="bi bi-stars me-1"></i> Modern Digital Banking
+                <i className="fas fa-star me-1"></i> Modern Digital Banking
               </div>
               <h1 className="sfa-hero-title">
                 Banking that<br />
                 <span className="sfa-hero-accent">works for you</span>
               </h1>
               <p className="sfa-hero-desc">
-                Manage your money, make transfers, pay bills, and track every transaction —
+                Manage your money, make transfers, pay bills, and track every transaction — 
                 all from one secure platform.
               </p>
               <div className="d-flex gap-3 flex-wrap">
                 <Link to="/register" className="btn sfa-btn-primary sfa-btn-lg">
                   Open Free Account
-                  <i className="bi bi-arrow-right ms-2"></i>
+                  <i className="fas fa-arrow-right ms-2"></i>
                 </Link>
                 <Link to="/login" className="btn sfa-btn-ghost sfa-btn-lg">
                   Sign In
@@ -66,15 +66,15 @@ const Landing = () => {
               
               <div className="sfa-trust mt-4">
                 <div className="sfa-trust-item">
-                  <i className="bi bi-shield-check text-success"></i>
+                  <i className="fas fa-shield-alt text-success"></i>
                   <span> Secured Banking</span>
                 </div>
                 <div className="sfa-trust-item">
-                  <i className="bi bi-gift text-warning"></i>
+                  <i className="fas fa-gift text-warning"></i>
                   <span>₦100k Starter Bonus</span>
                 </div>
                 <div className="sfa-trust-item">
-                  <i className="bi bi-clock text-info"></i>
+                  <i className="fas fa-clock text-info"></i>
                   <span>24/7 Access</span>
                 </div>
               </div>
@@ -89,7 +89,7 @@ const Landing = () => {
                       <div style={{ fontSize: "0.7rem", opacity: 0.7 }}>SAVINGS ACCOUNT</div>
                       <div style={{ fontSize: "0.85rem", fontWeight: 600 }}>Cole Palmer</div>
                     </div>
-                    <i className="bi bi-bank2" style={{ fontSize: "1.4rem" }}></i>
+                    <i className="fas fa-university" style={{ fontSize: "1.4rem" }}></i>
                   </div>
                   <div style={{ fontSize: "0.7rem", opacity: 0.7, marginBottom: "0.25rem" }}>AVAILABLE BALANCE</div>
                   <div style={{ fontSize: "1.8rem", fontWeight: 700 }}>₦100,000.00</div>
@@ -101,13 +101,13 @@ const Landing = () => {
                
                 <div className="sfa-mock-transactions">
                   {[
-                    { icon: "bi-arrow-down-circle-fill", label: "Starter Bonus", amount: "+₦100,000", color: "#22c55e" },
-                    { icon: "bi-receipt-cutoff",         label: "DSTV Payment",  amount: "-₦35,000",   color: "#ef4444" },
-                    { icon: "bi-arrow-left-right",       label: "Transfer",      amount: "-₦10,000",  color: "#ef4444" },
-                     { icon: "bi-arrow-left-right",      label: "Sportybet",      amount:"-₦5,000",  color: "#ef4444" },
+                    { icon: "fa-arrow-circle-down", label: "Starter Bonus", amount: "+₦100,000", color: "#22c55e" },
+                    { icon: "fa-receipt",          label: "DSTV Payment",  amount: "-₦35,000",   color: "#ef4444" },
+                    { icon: "fa-exchange-alt",    label: "Transfer",      amount: "-₦10,000",  color: "#ef4444" },
+                    { icon: "fa-exchange-alt",    label: "Sportybet",      amount: "-₦5,000",   color: "#ef4444" },
                   ].map((tx, i) => (
                     <div key={i} className="sfa-mock-tx">
-                      <i className={`bi ${tx.icon}`} style={{ color: tx.color }}></i>
+                      <i className={`fas ${tx.icon}`} style={{ color: tx.color }}></i>
                       <span className="flex-grow-1">{tx.label}</span>
                       <span style={{ color: tx.color, fontWeight: 600, fontSize: "0.85rem" }}>{tx.amount}</span>
                     </div>
@@ -131,7 +131,7 @@ const Landing = () => {
               <div key={i} className="col-sm-6 col-lg-3">
                 <div className="sfa-feature-card h-100">
                   <div className="sfa-feature-icon mb-3">
-                    <i className={`bi ${f.icon}`}></i>
+                    <i className={`fas ${f.icon}`}></i>
                   </div>
                   <h5 className="sfa-feature-title">{f.title}</h5>
                   <p className="sfa-feature-desc">{f.desc}</p>
@@ -149,23 +149,23 @@ const Landing = () => {
           <p className="sfa-cta-sub mb-4">Create your account in under 2 minutes</p>
           <Link to="/register" className="btn sfa-btn-primary sfa-btn-lg">
             Open Your Free Account
-            <i className="bi bi-arrow-right ms-2"></i>
+            <i className="fas fa-arrow-right ms-2"></i>
           </Link>
         </div>
       </section>
 
-     \
+     
       <footer className="sfa-landing-footer py-4">
         <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
           <div className="d-flex align-items-center gap-2">
-            <i className="bi bi-bank2"></i>
+            <i className="fas fa-university"></i>
             <span className="fw-semibold">SFA Bank</span>
           </div>
           <small style={{ opacity: 0.6 }}>
             © {new Date().getFullYear()} SFA Bank. All rights reserved.
           </small>
           <div className="d-flex align-items-center gap-1" style={{ opacity: 0.6, fontSize: "0.8rem" }}>
-            <i className="bi bi-shield-lock me-1"></i> wG Inc. | 1969 Main St, Knowhere |
+            <i className="fas fa-shield-alt me-1"></i> wG Inc. | 1969 Main St, Knowhere |
           </div>
         </div>
       </footer>

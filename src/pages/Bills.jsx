@@ -4,13 +4,13 @@ import { fetchAccounts } from "../services/accountService";
 import { payBill, getPaymentHistory } from "../services/paymentService";
 
 const billerCategories = [
-  { id: "electricity", label: "Electricity", icon: "bi-lightning-charge-fill",  color: "#f59e0b" },
-  { id: "internet",    label: "Internet",    icon: "bi-wifi",                    color: "#3b82f6" },
-  { id: "cable",       label: "Cable TV",    icon: "bi-tv-fill",                 color: "#8b5cf6" },
-  { id: "phone",       label: "Airtime/Data",icon: "bi-phone-fill",              color: "#22c55e" },
-  { id: "water",       label: "Water",       icon: "bi-droplet-fill",            color: "#06b6d4" },
-  { id: "betting",     label: "Betting",     icon: "bi-slack-fill",              color: "#2806d4" },
-  { id: "other",       label: "Others",      icon: "bi-three-dots-circle-fill",  color: "#94a3b8" },
+  { id: "electricity", label: "Electricity", icon: "fa-bolt",           color: "#f59e0b" },
+  { id: "internet",    label: "Internet",    icon: "fa-wifi",           color: "#3b82f6" },
+  { id: "cable",       label: "Cable TV",    icon: "fa-tv",             color: "#8b5cf6" },
+  { id: "phone",       label: "Airtime/Data",icon: "fa-mobile-alt",    color: "#22c55e" },
+  { id: "water",       label: "Water",       icon: "fa-tint",           color: "#06b6d4" },
+  { id: "betting",     label: "Betting",     icon: "fa-dice",          color: "#2806d4" },
+  { id: "other",       label: "Others",      icon: "fa-ellipsis-h",    color: "#94a3b8" },
 ];
 
 const billers = {
@@ -183,7 +183,7 @@ const Bills = () => {
 
               {error && (
                 <div className="d-flex align-items-center gap-2 mb-3 p-3 rounded-3" style={{ background: "var(--red-bg)", border: "1px solid rgba(192,57,43,0.2)", fontSize: "0.85rem", color: "var(--red)" }}>
-                  <i className="bi bi-exclamation-circle-fill flex-shrink-0"></i> {error}
+                  <i className="fas fa-exclamation-circle flex-shrink-0"></i> {error}
                 </div>
               )}
 
@@ -203,7 +203,7 @@ const Bills = () => {
                         transition: "all 0.18s ease",
                       }}
                     >
-                      <i className={`bi ${cat.icon}`} style={{ fontSize: "1.3rem", color: category === cat.id ? "var(--gold-dark)" : cat.color, display: "block", marginBottom: "0.3rem" }}></i>
+                      <i className={`fas ${cat.icon}`} style={{ fontSize: "1.3rem", color: category === cat.id ? "var(--gold-dark)" : cat.color, display: "block", marginBottom: "0.3rem" }}></i>
                       <span style={{ fontSize: "0.72rem", fontWeight: 600, color: category === cat.id ? "var(--gold-dark)" : "var(--text-3)" }}>{cat.label}</span>
                     </button>
                   </div>
@@ -236,7 +236,7 @@ const Bills = () => {
                           <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>Code: {b.code}</div>
                         </div>
                         {selectedBiller?.id === b.id && (
-                          <i className="bi bi-check-circle-fill" style={{ color: "var(--gold)", fontSize: "1.1rem" }}></i>
+                          <i className="fas fa-check-circle" style={{ color: "var(--gold)", fontSize: "1.1rem" }}></i>
                         )}
                       </button>
                     ))}
@@ -252,7 +252,7 @@ const Bills = () => {
                       {category === "phone" ? "Phone Number" : category === "electricity" || category === "water" ? "Meter Number" : "Customer ID / Reference"}
                     </label>
                     <div className="sfa-input-group">
-                      <span className="sfa-input-icon"><i className="bi bi-upc-scan"></i></span>
+                      <span className="sfa-input-icon"><i className="fas fa-qrcode"></i></span>
                       <input
                         type="text" className="sfa-field"
                         placeholder={category === "phone" ? "08012345678" : "Enter reference number"}
@@ -282,14 +282,14 @@ const Bills = () => {
                   </div>
 
                   <button className="sfa-btn-primary w-100 sfa-btn-lg" onClick={handleProceed}>
-                    Proceed to Pay <i className="bi bi-arrow-right ms-1"></i>
+                    Proceed to Pay <i className="fas fa-arrow-right ms-1"></i>
                   </button>
                 </>
               )}
 
               {!category && (
                 <div className="sfa-empty py-3">
-                  <i className="bi bi-receipt-cutoff" style={{ fontSize: "2rem", color: "var(--gold-lighter)" }}></i>
+                  <i className="fas fa-receipt" style={{ fontSize: "2rem", color: "var(--gold-lighter)" }}></i>
                   <p style={{ marginTop: "0.5rem" }}>Select a category to get started</p>
                 </div>
               )}
@@ -326,16 +326,16 @@ const Bills = () => {
               </div>
 
               <div className="sfa-notice mb-4">
-                <i className="bi bi-info-circle-fill" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
+                <i className="fas fa-info-circle" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
                 Bill payments are processed instantly. Please verify all details before confirming.
               </div>
 
               <div className="d-flex gap-3">
                 <button className="sfa-btn-silver flex-grow-1" onClick={() => setStep(STEPS.FORM)} disabled={paymentLoading}>
-                  <i className="bi bi-arrow-left me-1"></i> Back
+                  <i className="fas fa-arrow-left me-1"></i> Back
                 </button>
                 <button className="sfa-btn-primary flex-grow-1 sfa-btn-lg" onClick={handleConfirm} disabled={paymentLoading}>
-                  {paymentLoading ? <><span className="spinner-border spinner-border-sm me-2" />Paying...</> : <><i className="bi bi-check2-circle me-2"></i>Pay Now</>}
+                  {paymentLoading ? <><span className="spinner-border spinner-border-sm me-2" />Paying...</> : <><i className="fas fa-check-circle me-2"></i>Pay Now</>}
                 </button>
               </div>
             </div>
@@ -345,7 +345,7 @@ const Bills = () => {
           {step === STEPS.SUCCESS && (
             <div className="sfa-card text-center sfa-animate">
               <div style={{ width: 80, height: 80, borderRadius: "50%", background: "var(--green-bg)", border: "3px solid var(--green)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
-                <i className="bi bi-check-lg" style={{ fontSize: "2rem", color: "var(--green)" }}></i>
+                <i className="fas fa-check" style={{ fontSize: "2rem", color: "var(--green)" }}></i>
               </div>
               <h5 className="font-sora fw-bold mb-1">Payment Successful!</h5>
               <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", marginBottom: "1.5rem" }}>
@@ -374,7 +374,7 @@ const Bills = () => {
           {step === STEPS.ERROR && (
             <div className="sfa-card text-center sfa-animate">
               <div style={{ width: 80, height: 80, borderRadius: "50%", background: "var(--red-bg)", border: "3px solid var(--red)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
-                <i className="bi bi-x-lg" style={{ fontSize: "2rem", color: "var(--red)" }}></i>
+                <i className="fas fa-times" style={{ fontSize: "2rem", color: "var(--red)" }}></i>
               </div>
               <h5 className="font-sora fw-bold mb-1">Payment Failed</h5>
               <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", marginBottom: "1.5rem" }}>
@@ -393,13 +393,13 @@ const Bills = () => {
           <div className="sfa-card">
             <h6 className="font-sora fw-bold mb-3" style={{ fontSize: "0.9rem" }}>Recent Payments</h6>
             {paymentHistory.length === 0 ? (
-              <div className="sfa-empty"><i className="bi bi-receipt"></i><p>No payments yet</p></div>
+              <div className="sfa-empty"><i className="fas fa-receipt"></i><p>No payments yet</p></div>
             ) : (
               <div className="d-flex flex-column gap-2">
                 {paymentHistory.slice(0, 5).map((p) => (
                   <div key={p._id || p.id} style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.6rem", borderRadius: "var(--radius-sm)", border: "1px solid var(--border-light)" }}>
                     <div style={{ width: 36, height: 36, borderRadius: 10, background: "var(--gold-bg)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <i className="bi bi-receipt-cutoff" style={{ color: "var(--gold-dark)", fontSize: "0.9rem" }}></i>
+                      <i className="fas fa-receipt" style={{ color: "var(--gold-dark)", fontSize: "0.9rem" }}></i>
                     </div>
                     <div className="flex-grow-1 min-w-0">
                       <div style={{ fontSize: "0.85rem", fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{p.billerName || p.description}</div>

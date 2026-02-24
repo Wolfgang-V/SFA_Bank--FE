@@ -118,7 +118,7 @@ const Security = () => {
             <div className="d-flex justify-content-between align-items-start mb-3">
               <div className="d-flex align-items-center gap-3">
                 <div style={{ width: 46, height: 46, borderRadius: 14, background: hasPin ? "var(--green-bg)" : "var(--gold-bg)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <i className="bi bi-key-fill" style={{ fontSize: "1.25rem", color: hasPin ? "var(--green)" : "var(--gold-dark)" }}></i>
+                  <i className="fas fa-key" style={{ fontSize: "1.25rem", color: hasPin ? "var(--green)" : "var(--gold-dark)" }}></i>
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: "0.95rem" }}>Transaction PIN</div>
@@ -135,7 +135,7 @@ const Security = () => {
             {/* Success message */}
             {pinSuccess && (
               <div className="d-flex align-items-center gap-2 mb-3 p-3 rounded-3" style={{ background: "var(--green-bg)", border: "1px solid rgba(46,158,107,0.2)", fontSize: "0.85rem", color: "var(--green)" }}>
-                <i className="bi bi-check-circle-fill"></i>
+                <i className="fas fa-check-circle"></i>
                 Transaction PIN set successfully!
               </div>
             )}
@@ -143,7 +143,7 @@ const Security = () => {
             {/* PIN Error message */}
             {pinError && (
               <div className="d-flex align-items-center gap-2 mb-3 p-3 rounded-3" style={{ background: "var(--red-bg)", border: "1px solid rgba(192,57,43,0.2)", fontSize: "0.85rem", color: "var(--red)" }}>
-                <i className="bi bi-exclamation-circle-fill"></i>
+                <i className="fas fa-exclamation-circle"></i>
                 {pinError}
               </div>
             )}
@@ -152,11 +152,11 @@ const Security = () => {
             {pinStep === "view" && (
               <div>
                 <div className="sfa-notice mb-3">
-                  <i className="bi bi-info-circle-fill" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
+                  <i className="fas fa-info-circle" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
                   Your transaction PIN is required to authorize transfers
                 </div>
                 <button className="sfa-btn-primary" onClick={() => setPinStep("set")}>
-                  <i className="bi bi-plus-circle me-2"></i>{hasPin ? "Change PIN" : "Set PIN"}
+                  <i className="fas fa-plus-circle me-2"></i>{hasPin ? "Change PIN" : "Set PIN"}
                 </button>
               </div>
             )}
@@ -167,7 +167,7 @@ const Security = () => {
                 <div className="mb-3">
                   <label className="sfa-label">Enter 4-digit PIN</label>
                   <div className="sfa-input-group">
-                    <span className="sfa-input-icon"><i className="bi bi-lock-fill"></i></span>
+                    <span className="sfa-input-icon"><i className="fas fa-lock"></i></span>
                     <input
                       type="password"
                       className="sfa-field"
@@ -183,7 +183,7 @@ const Security = () => {
                 <div className="mb-3">
                   <label className="sfa-label">Confirm PIN</label>
                   <div className="sfa-input-group">
-                    <span className="sfa-input-icon"><i className="bi bi-lock-fill"></i></span>
+                    <span className="sfa-input-icon"><i className="fas fa-lock"></i></span>
                     <input
                       type="password"
                       className="sfa-field"
@@ -201,7 +201,7 @@ const Security = () => {
                     Cancel
                   </button>
                   <button className="sfa-btn-primary flex-grow-1" onClick={handleSetPin} disabled={pinLoading}>
-                    {pinLoading ? <><span className="spinner-border spinner-border-sm me-2" />Saving...</> : <><i className="bi bi-check2 me-2"></i>Save PIN</>}
+                    {pinLoading ? <><span className="spinner-border spinner-border-sm me-2" />Saving...</> : <><i className="fas fa-check me-2"></i>Save PIN</>}
                   </button>
                 </div>
               </div>
@@ -213,7 +213,7 @@ const Security = () => {
             <div className="d-flex justify-content-between align-items-start mb-3">
               <div className="d-flex align-items-center gap-3">
                 <div style={{ width: 46, height: 46, borderRadius: 14, background: twoFA ? "var(--green-bg)" : "var(--gold-bg)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <i className="bi bi-shield-lock-fill" style={{ fontSize: "1.25rem", color: twoFA ? "var(--green)" : "var(--gold-dark)" }}></i>
+                  <i className="fas fa-shield-alt" style={{ fontSize: "1.25rem", color: twoFA ? "var(--green)" : "var(--gold-dark)" }}></i>
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: "0.95rem" }}>Two-Factor Authentication</div>
@@ -230,14 +230,14 @@ const Security = () => {
             {/* ── 2FA states ── */}
             {twoFAStep === "off" && (
               <button className="sfa-btn-primary" onClick={handle2FAToggle}>
-                <i className="bi bi-shield-plus me-2"></i>Enable 2FA
+                <i className="fas fa-shield-plus me-2"></i>Enable 2FA
               </button>
             )}
 
             {twoFAStep === "qr" && (
               <div className="sfa-animate">
                 <div className="sfa-notice mb-3">
-                  <i className="bi bi-info-circle-fill" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
+                  <i className="fas fa-info-circle" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
                   Scan the QR code below with Google Authenticator or Authy
                 </div>
                 {/* Fake QR code */}
@@ -252,7 +252,7 @@ const Security = () => {
                 <div className="mb-3">
                   <label className="sfa-label">Enter 6-digit verification code</label>
                   <div className="sfa-input-group">
-                    <span className="sfa-input-icon"><i className="bi bi-key-fill"></i></span>
+                    <span className="sfa-input-icon"><i className="fas fa-key"></i></span>
                     <input
                       type="text" className="sfa-field" maxLength={6}
                       placeholder="000000"
@@ -266,7 +266,7 @@ const Security = () => {
                 <div className="d-flex gap-2">
                   <button className="sfa-btn-silver" onClick={() => setTwoFAStep("off")}>Cancel</button>
                   <button className="sfa-btn-primary flex-grow-1" onClick={handleVerify2FA}>
-                    <i className="bi bi-check2-circle me-2"></i>Verify & Enable
+                    <i className="fas fa-check-circle me-2"></i>Verify & Enable
                   </button>
                 </div>
               </div>
@@ -275,11 +275,11 @@ const Security = () => {
             {twoFAStep === "on" && (
               <div>
                 <div className="d-flex align-items-center gap-2 mb-3 p-3 rounded-3" style={{ background: "var(--green-bg)", border: "1px solid rgba(46,158,107,0.2)", fontSize: "0.85rem", color: "var(--green)" }}>
-                  <i className="bi bi-check-circle-fill"></i>
+                  <i className="fas fa-check-circle"></i>
                   2FA is now active on your account
                 </div>
                 <button className="sfa-btn-outline" style={{ borderColor: "var(--red)", color: "var(--red)" }} onClick={handle2FAToggle}>
-                  <i className="bi bi-shield-x me-2"></i>Disable 2FA
+                  <i className="fas fa-shield-virus me-2"></i>Disable 2FA
                 </button>
               </div>
             )}
@@ -290,7 +290,7 @@ const Security = () => {
             <div className="d-flex justify-content-between align-items-center mb-3">
               <div className="d-flex align-items-center gap-3">
                 <div style={{ width: 46, height: 46, borderRadius: 14, background: "var(--gold-bg)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <i className="bi bi-sliders" style={{ fontSize: "1.25rem", color: "var(--gold-dark)" }}></i>
+                  <i className="fas fa-sliders-h" style={{ fontSize: "1.25rem", color: "var(--gold-dark)" }}></i>
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: "0.95rem" }}>Transaction Limits</div>
@@ -299,7 +299,7 @@ const Security = () => {
               </div>
               {!editLimits && (
                 <button className="sfa-btn-outline" style={{ padding: "0.35rem 0.9rem", fontSize: "0.82rem" }} onClick={() => { setEditLimits(true); setDraftLimits(limits); }}>
-                  <i className="bi bi-pencil me-1"></i>Edit
+                  <i className="fas fa-pen me-1"></i>Edit
                 </button>
               )}
             </div>
@@ -307,12 +307,12 @@ const Security = () => {
             {!editLimits ? (
               <div>
                 {[
-                  { label: "Single Transfer Limit", value: formatCurrency(limits.single), icon: "bi-arrow-left-right" },
-                  { label: "Daily Transfer Limit",  value: formatCurrency(limits.daily),  icon: "bi-calendar-check"   },
+                  { label: "Single Transfer Limit", value: formatCurrency(limits.single), icon: "fa-exchange-alt" },
+                  { label: "Daily Transfer Limit",  value: formatCurrency(limits.daily),  icon: "fa-calendar-check"   },
                 ].map(({ label, value, icon }) => (
                   <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0.75rem 0", borderBottom: "1px solid var(--border-light)" }}>
                     <div className="d-flex align-items-center gap-2">
-                      <i className={`bi ${icon}`} style={{ color: "var(--gold-dark)", fontSize: "0.9rem" }}></i>
+                      <i className={`fas ${icon}`} style={{ color: "var(--gold-dark)", fontSize: "0.9rem" }}></i>
                       <span style={{ fontSize: "0.88rem", color: "var(--text-3)" }}>{label}</span>
                     </div>
                     <span style={{ fontWeight: 700, fontSize: "0.92rem", color: "var(--gold-dark)" }}>{value}</span>
@@ -320,7 +320,7 @@ const Security = () => {
                 ))}
                 {limitsSaved && (
                   <div className="d-flex align-items-center gap-2 mt-3 p-3 rounded-3" style={{ background: "var(--green-bg)", border: "1px solid rgba(46,158,107,0.2)", fontSize: "0.85rem", color: "var(--green)" }}>
-                    <i className="bi bi-check-circle-fill"></i> Limits updated successfully!
+                    <i className="fas fa-check-circle"></i> Limits updated successfully!
                   </div>
                 )}
               </div>
@@ -346,7 +346,7 @@ const Security = () => {
                 <div className="d-flex gap-2 mt-2">
                   <button className="sfa-btn-silver" onClick={() => setEditLimits(false)}>Cancel</button>
                   <button className="sfa-btn-primary flex-grow-1" onClick={handleLimitsSave}>
-                    <i className="bi bi-check2 me-2"></i>Save Limits
+                    <i className="fas fa-check me-2"></i>Save Limits
                   </button>
                 </div>
               </div>
@@ -358,7 +358,7 @@ const Security = () => {
         <div className="col-12 col-lg-5">
           <div className="sfa-card">
             <h6 className="font-sora fw-bold mb-3" style={{ fontSize: "0.9rem" }}>
-              <i className="bi bi-clock-history me-2" style={{ color: "var(--gold-dark)" }}></i>
+              <i className="fas fa-history me-2" style={{ color: "var(--gold-dark)" }}></i>
               Recent Activity
             </h6>
             <div className="d-flex flex-column gap-2">
@@ -369,14 +369,14 @@ const Security = () => {
                     background: a.success ? "var(--green-bg)" : "var(--red-bg)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
-                    <i className={`bi ${a.success ? "bi-check-circle-fill" : "bi-x-circle-fill"}`}
+                    <i className={`fas ${a.success ? "fa-check-circle" : "fa-times-circle"}`}
                       style={{ fontSize: "0.9rem", color: a.success ? "var(--green)" : "var(--red)" }}></i>
                   </div>
                   <div className="flex-grow-1 min-w-0">
                     <div style={{ fontSize: "0.85rem", fontWeight: 600 }}>{a.event}</div>
                     <div style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>{a.device}</div>
                     <div style={{ fontSize: "0.73rem", color: "var(--text-light)", marginTop: 1 }}>
-                      <i className="bi bi-geo-alt me-1"></i>{a.location} · {formatDate(a.time)}
+                      <i className="fas fa-map-marker-alt me-1"></i>{a.location} · {formatDate(a.time)}
                     </div>
                   </div>
                 </div>

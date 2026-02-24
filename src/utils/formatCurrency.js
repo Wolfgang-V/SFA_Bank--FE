@@ -36,10 +36,10 @@ export const getStatusBadge = (status) => {
 
 export const getTransactionIcon = (type) => {
   const map = {
-    transfer: "bi-arrow-left-right",
-    deposit: "bi-arrow-down-circle",
-    withdrawal: "bi-arrow-up-circle",
-    bill_payment: "bi-receipt",
+    transfer: "fa-exchange-alt",
+    deposit: "fa-arrow-down",
+    withdrawal: "fa-arrow-up",
+    bill_payment: "fa-receipt",
   };
-  return map[type?.toLowerCase()] || "bi-circle";
+  return map[type?.toLowerCase()] || "fa-circle";
 };

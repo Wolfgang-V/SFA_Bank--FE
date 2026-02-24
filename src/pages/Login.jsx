@@ -51,7 +51,7 @@ const Login = () => {
               
               <div className="text-center mb-4">
                 <div className="sfa-auth-logo mx-auto mb-3">
-                  <i className="bi bi-bank2"></i>
+                  <i className="fas fa-university"></i>
                 </div>
                 <h1 className="sfa-auth-title">Welcome back</h1>
                 <p className="sfa-auth-subtitle">Sign in to your SFA Bank account</p>
@@ -60,7 +60,7 @@ const Login = () => {
               
               {error && (
                 <div className="alert alert-danger d-flex align-items-center gap-2 py-2 mb-3" role="alert">
-                  <i className="bi bi-exclamation-circle-fill flex-shrink-0"></i>
+                  <i className="fas fa-exclamation-circle flex-shrink-0"></i>
                   <small>{error}</small>
                 </div>
               )}
@@ -72,7 +72,7 @@ const Login = () => {
                   <label className="sfa-label" htmlFor="email">Email address</label>
                   <div className="sfa-input-group">
                     <span className="sfa-input-icon">
-                      <i className="bi bi-envelope"></i>
+                      <i className="fas fa-envelope"></i>
                     </span>
                     <input
                       id="email"
@@ -93,7 +93,7 @@ const Login = () => {
                   <label className="sfa-label" htmlFor="password">Password</label>
                   <div className="sfa-input-group">
                     <span className="sfa-input-icon">
-                      <i className="bi bi-lock"></i>
+                      <i className="fas fa-lock"></i>
                     </span>
                     <input
                       id="password"
@@ -112,7 +112,7 @@ const Login = () => {
                       onClick={() => setShowPassword(!showPassword)}
                       tabIndex={-1}
                     >
-                      <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}></i>
+                      <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
                     </button>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ const Login = () => {
                     </>
                   ) : (
                     <>
-                      <i className="bi bi-box-arrow-in-right me-2"></i>
+                      <i className="fas fa-sign-in-alt me-2"></i>
                       Sign In
                     </>
                   )}
@@ -157,7 +157,7 @@ const Login = () => {
 
             
             <p className="text-center mt-4 sfa-footer-note">
-              <i className="bi bi-shield-lock me-1"></i>
+              <i className="fas fa-shield-alt me-1"></i>
               Secured with 256-bit SSL encryption
             </p>
           </div>

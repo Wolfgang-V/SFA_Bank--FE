@@ -99,7 +99,7 @@ const Register = () => {
               
               <div className="text-center mb-4">
                 <div className="sfa-auth-logo mx-auto mb-3">
-                  <i className="bi bi-bank2"></i>
+                  <i className="fas fa-university"></i>
                 </div>
                 <h1 className="sfa-auth-title">Create account</h1>
                 <p className="sfa-auth-subtitle">Join SFA Bank — your money, secured</p>
@@ -121,7 +121,7 @@ const Register = () => {
              
               {error && (
                 <div className="alert alert-danger d-flex align-items-center gap-2 py-2 mb-3">
-                  <i className="bi bi-exclamation-circle-fill flex-shrink-0"></i>
+                  <i className="fas fa-exclamation-circle flex-shrink-0"></i>
                   <small>{error}</small>
                 </div>
               )}
@@ -132,7 +132,7 @@ const Register = () => {
                   <div className="mb-3">
                     <label className="sfa-label">Full Name</label>
                     <div className="sfa-input-group">
-                      <span className="sfa-input-icon"><i className="bi bi-person"></i></span>
+                      <span className="sfa-input-icon"><i className="fas fa-user"></i></span>
                       <input
                         type="text" name="fullName" className="sfa-field"
                         placeholder="John Doe"
@@ -144,7 +144,7 @@ const Register = () => {
                   <div className="mb-3">
                     <label className="sfa-label">Username</label>
                     <div className="sfa-input-group">
-                      <span className="sfa-input-icon"><i className="bi bi-at"></i></span>
+                      <span className="sfa-input-icon"><i className="fas fa-at"></i></span>
                       <input
                         type="text" name="username" className="sfa-field"
                         placeholder="johndoe"
@@ -156,7 +156,7 @@ const Register = () => {
                   <div className="mb-3">
                     <label className="sfa-label">Email Address</label>
                     <div className="sfa-input-group">
-                      <span className="sfa-input-icon"><i className="bi bi-envelope"></i></span>
+                      <span className="sfa-input-icon"><i className="fas fa-envelope"></i></span>
                       <input
                         type="email" name="email" className="sfa-field"
                         placeholder="you@example.com"
@@ -170,7 +170,7 @@ const Register = () => {
                       Phone Number <span className="text-muted">(optional)</span>
                     </label>
                     <div className="sfa-input-group">
-                      <span className="sfa-input-icon"><i className="bi bi-phone"></i></span>
+                      <span className="sfa-input-icon"><i className="fas fa-phone"></i></span>
                       <input
                         type="tel" name="phoneNumber" className="sfa-field"
                         placeholder="08133944036"
@@ -185,7 +185,7 @@ const Register = () => {
                     onClick={handleNext}
                   >
                     Continue
-                    <i className="bi bi-arrow-right ms-2"></i>
+                    <i className="fas fa-arrow-right ms-2"></i>
                   </button>
                 </div>
               )}
@@ -196,7 +196,7 @@ const Register = () => {
                   <div className="mb-3">
                     <label className="sfa-label">Password</label>
                     <div className="sfa-input-group">
-                      <span className="sfa-input-icon"><i className="bi bi-lock"></i></span>
+                      <span className="sfa-input-icon"><i className="fas fa-lock"></i></span>
                       <input
                         type={showPassword ? "text" : "password"}
                         name="password" className="sfa-field"
@@ -209,7 +209,7 @@ const Register = () => {
                         onClick={() => setShowPassword(!showPassword)}
                         tabIndex={-1}
                       >
-                        <i className={`bi ${showPassword ? "bi-eye-slash" : "bi-eye"}`}></i>
+                        <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
                       </button>
                     </div>
 
@@ -242,7 +242,7 @@ const Register = () => {
                   <div className="mb-4">
                     <label className="sfa-label">Confirm Password</label>
                     <div className="sfa-input-group">
-                      <span className="sfa-input-icon"><i className="bi bi-lock-fill"></i></span>
+                      <span className="sfa-input-icon"><i className="fas fa-lock"></i></span>
                       <input
                         type={showPassword ? "text" : "password"}
                         name="confirmPassword" className="sfa-field"
@@ -254,7 +254,7 @@ const Register = () => {
                    
                     {formData.confirmPassword && (
                       <small className={formData.password === formData.confirmPassword ? "text-success" : "text-danger"}>
-                        <i className={`bi me-1 ${formData.password === formData.confirmPassword ? "bi-check-circle" : "bi-x-circle"}`}></i>
+                        <i className={`fas me-1 ${formData.password === formData.confirmPassword ? "fa-check-circle" : "fa-times-circle"}`}></i>
                         {formData.password === formData.confirmPassword ? "Passwords match" : "Passwords don't match"}
                       </small>
                     )}
@@ -262,7 +262,7 @@ const Register = () => {
 
                 
                   <div className="sfa-notice mb-4">
-                    <i className="bi bi-gift-fill text-success me-2"></i>
+                    <i className="fas fa-gift text-success me-2"></i>
                     <span>Your account will be credited with <strong>₦100,000</strong> on creation!</span>
                   </div>
 
@@ -274,7 +274,7 @@ const Register = () => {
                       onClick={() => { setStep(1); setError(""); }}
                       disabled={loading}
                     >
-                      <i className="bi bi-arrow-left me-1"></i> Back
+                      <i className="fas fa-arrow-left me-1"></i> Back
                     </button>
                     <button
                       type="submit"
@@ -284,7 +284,7 @@ const Register = () => {
                       {loading ? (
                         <><span className="spinner-border spinner-border-sm me-2" />Creating...</>
                       ) : (
-                        <><i className="bi bi-check-circle me-2"></i>Create Account</>
+                        <><i className="fas fa-check-circle me-2"></i>Create Account</>
                       )}
                     </button>
                   </div>
@@ -301,7 +301,7 @@ const Register = () => {
             </div>
 
             <p className="text-center mt-4 sfa-footer-note">
-              <i className="bi bi-shield-lock me-1"></i>
+              <i className="fas fa-shield-alt me-1"></i>
               Secured with 256-bit SSL encryption
             </p>
           </div>

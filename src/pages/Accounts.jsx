@@ -101,7 +101,7 @@ const Accounts = () => {
   if (error) {
     return (
       <div className="text-center py-5">
-        <i className="bi bi-exclamation-circle text-danger" style={{ fontSize: "3rem" }}></i>
+        <i className="fas fa-exclamation-circle text-danger" style={{ fontSize: "3rem" }}></i>
         <p className="text-danger mt-3">{error}</p>
         <button className="btn btn-primary" onClick={() => window.location.reload()}>
           Try Again
@@ -114,7 +114,7 @@ const Accounts = () => {
   if (!account) {
     return (
       <div className="text-center py-5">
-        <i className="bi bi-wallet2" style={{ fontSize: "3rem", color: "#cbd5e1" }}></i>
+        <i className="fas fa-wallet" style={{ fontSize: "3rem", color: "#cbd5e1" }}></i>
         <p className="text-muted mt-3">No account found</p>
         {debugInfo && (
           <div className="mt-3 p-3 bg-light rounded text-start" style={{ fontSize: "0.85rem" }}>
@@ -140,7 +140,7 @@ const Accounts = () => {
           </p>
         </div>
         <Link to="/transfer" className="sfa-btn-primary">
-          <i className="bi bi-plus-lg"></i> New Transfer
+          <i className="fas fa-plus"></i> New Transfer
         </Link>
       </div>
 
@@ -159,7 +159,7 @@ const Accounts = () => {
             className="sfa-badge"
             style={{ background: "rgba(255,255,255,0.18)", color: "#fff", fontSize: "0.72rem" }}
           >
-            <i className="bi bi-circle-fill me-1" style={{ fontSize: "0.45rem", color: "#86efac" }}></i>
+            <i className="fas fa-circle me-1" style={{ fontSize: "0.45rem", color: "#86efac" }}></i>
             {account.status}
           </span>
         </div>
@@ -186,17 +186,17 @@ const Accounts = () => {
       
       <div className="row g-3 mb-4 sfa-animate-delay-2">
         {[
-          { label: "Total Credits", icon: "bi-arrow-down-circle-fill", color: "var(--green)", bg: "var(--green-bg)",
+          { label: "Total Credits", icon: "fa-arrow-circle-down", color: "var(--green)", bg: "var(--green-bg)",
             value: formatCurrency(transactions.filter(t => !isDebit(t.transactionType) && t.status === "successful").reduce((s,t) => s + t.amount, 0)) },
-          { label: "Total Debits",  icon: "bi-arrow-up-circle-fill",   color: "var(--red)",   bg: "var(--red-bg)",
+          { label: "Total Debits",  icon: "fa-arrow-circle-up",   color: "var(--red)",   bg: "var(--red-bg)",
             value: formatCurrency(transactions.filter(t => isDebit(t.transactionType) && t.status === "successful").reduce((s,t) => s + t.amount, 0)) },
-          { label: "Transactions",  icon: "bi-list-ul",                 color: "var(--gold-dark)", bg: "var(--gold-bg)",
+          { label: "Transactions",  icon: "fa-list",              color: "var(--gold-dark)", bg: "var(--gold-bg)",
             value: transactions.length },
         ].map(({ label, icon, color, bg, value }) => (
           <div key={label} className="col-6 col-md-4">
             <div className="sfa-card d-flex align-items-center gap-3 py-3">
               <div style={{ width: 40, height: 40, borderRadius: 12, background: bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <i className={`bi ${icon}`} style={{ fontSize: "1.05rem", color }}></i>
+                <i className={`fas ${icon}`} style={{ fontSize: "1.05rem", color }}></i>
               </div>
               <div>
                 <div style={{ fontSize: "0.72rem", color: "var(--text-muted)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em" }}>{label}</div>
@@ -217,7 +217,7 @@ const Accounts = () => {
         <div className="d-flex gap-2 mb-3 flex-wrap">
          
           <div className="sfa-input-group flex-grow-1" style={{ minWidth: 180 }}>
-            <span className="sfa-input-icon"><i className="bi bi-search"></i></span>
+            <span className="sfa-input-icon"><i className="fas fa-search"></i></span>
             <input
               type="text"
               className="sfa-field"
@@ -227,7 +227,7 @@ const Accounts = () => {
             />
             {search && (
               <button className="sfa-input-toggle" onClick={() => setSearch("")}>
-                <i className="bi bi-x"></i>
+                <i className="fas fa-times"></i>
               </button>
             )}
           </div>
@@ -261,7 +261,7 @@ const Accounts = () => {
         <div className="sfa-table-wrap">
           {filtered.length === 0 ? (
             <div className="sfa-empty">
-              <i className="bi bi-inbox"></i>
+              <i className="fas fa-inbox"></i>
               <p>No transactions match your search</p>
             </div>
           ) : (
@@ -290,7 +290,7 @@ const Accounts = () => {
                           background: isDebit(tx.transactionType) ? "var(--red-bg)" : "var(--green-bg)",
                           display: "flex", alignItems: "center", justifyContent: "center",
                         }}>
-                          <i className={`bi ${getTransactionIcon(tx.transactionType)}`}
+                          <i className={`fas ${getTransactionIcon(tx.transactionType)}`}
                             style={{ fontSize: "0.9rem", color: isDebit(tx.transactionType) ? "var(--red)" : "var(--green)" }}></i>
                         </div>
                         <span className="fw-semibold" style={{ fontSize: "0.86rem" }}>{tx.description}</span>
@@ -341,7 +341,7 @@ const Accounts = () => {
                 style={{ background: "var(--silver-lighter)", border: "none", borderRadius: "50%", width: 30, height: 30, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}
                 onClick={() => setSelectedTx(null)}
               >
-                <i className="bi bi-x" style={{ fontSize: "1rem" }}></i>
+                <i className="fas fa-times" style={{ fontSize: "1rem" }}></i>
               </button>
             </div>
 
@@ -352,7 +352,7 @@ const Accounts = () => {
                 background: isDebit(selectedTx.transactionType) ? "var(--red-bg)" : "var(--green-bg)",
                 display: "flex", alignItems: "center", justifyContent: "center",
               }}>
-                <i className={`bi ${getTransactionIcon(selectedTx.transactionType)}`}
+                <i className={`fas ${getTransactionIcon(selectedTx.transactionType)}`}
                   style={{ fontSize: "1.4rem", color: isDebit(selectedTx.transactionType) ? "var(--red)" : "var(--green)" }}></i>
               </div>
               <div style={{ fontSize: "1.8rem", fontWeight: 800, color: isDebit(selectedTx.transactionType) ? "var(--red)" : "var(--green)" }}>
