@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
 
 // Protected Pages
 import Dashboard from "./pages/Dashboard";
@@ -44,10 +45,11 @@ function App() {
       <Router>
         <Routes>
 
-          {/* ─── PUBLIC ROUTES ─── */}
+{/* ─── PUBLIC ROUTES ─── */}
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* ─── PROTECTED ROUTES (must be logged in) ─── */}
           <Route element={<ProtectedRoute />}>

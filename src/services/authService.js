@@ -23,11 +23,9 @@ api.interceptors.request.use((config) => {
 // POST /api/auth/register
 export const registerUser = async ({ username, email, password, fullName, phoneNumber }) => {
   const response = await api.post("/auth/register", {
-    username,
+    fullName,
     email,
     password,
-    full_name: fullName,
-    phone_number: phoneNumber,
   });
   return response.data; // { user, token }
 };
@@ -48,10 +46,11 @@ export const forgotPassword = async (email) => {
 
 // Reset password with token from email
 // POST /api/auth/reset-password
-export const resetPassword = async ({ token, newPassword }) => {
+export const resetPassword = async ({ email, otp, newPassword }) => {
   const response = await api.post("/auth/reset-password", {
-    token,
-    new_password: newPassword,
+    email,
+    otp,
+    newPassword,
   });
   return response.data;
 };
