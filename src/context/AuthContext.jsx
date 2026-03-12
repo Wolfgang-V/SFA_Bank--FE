@@ -8,13 +8,18 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("sfa_user");
-    const storedToken = localStorage.getItem("sfa_token");
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
-      setToken(storedToken);
-    }
-    setLoading(false);
+    // Simulate a brief loading delay so users can see the loader
+    const timer = setTimeout(() => {
+      const storedUser = localStorage.getItem("sfa_user");
+      const storedToken = localStorage.getItem("sfa_token");
+      if (storedUser && storedToken) {
+        setUser(JSON.parse(storedUser));
+        setToken(storedToken);
+      }
+      setLoading(false);
+    }, 800); // 800ms delay to show the page loader
+
+    return () => clearTimeout(timer);
   }, []);
 
   const login = (userData, authToken) => {

@@ -7,10 +7,10 @@ const billerCategories = [
   { id: "electricity", label: "Electricity", icon: "fa-bolt",           color: "#f59e0b" },
   { id: "internet",    label: "Internet",    icon: "fa-wifi",           color: "#3b82f6" },
   { id: "cable",       label: "Cable TV",    icon: "fa-tv",             color: "#8b5cf6" },
-  { id: "phone",       label: "Airtime/Data",icon: "fa-mobile-alt",    color: "#22c55e" },
-  { id: "water",       label: "Water",       icon: "fa-tint",           color: "#06b6d4" },
-  { id: "betting",     label: "Betting",     icon: "fa-dice",          color: "#2806d4" },
-  { id: "other",       label: "Others",      icon: "fa-ellipsis-h",    color: "#94a3b8" },
+  { id: "phone",       label: "Airtime",     icon: "fa-mobile-alt",    color: "#22c55e" },
+  { id: "water",       label: "Water",        icon: "fa-tint",           color: "#06b6d4" },
+  { id: "betting",     label: "Betting",      icon: "fa-dice",          color: "#2806d4" },
+  { id: "other",       label: "Others",       icon: "fa-ellipsis-h",    color: "#94a3b8" },
 ];
 
 const billers = {
@@ -57,7 +57,8 @@ const STEPS = { FORM: "form", CONFIRM: "confirm", SUCCESS: "success", ERROR: "er
 
 const Bills = () => {
   const [step,          setStep]          = useState(STEPS.FORM);
-  const [account, setAccount] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [selectedAccount, setSelectedAccount] = useState(null);
   const [paymentHistory, setPaymentHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [category,      setCategory]      = useState("");
@@ -67,24 +68,30 @@ const Bills = () => {
   const [paymentLoading, setPaymentLoading] = useState(false);
   const [reference,     setReference]     = useState("");
   const [paymentError, setPaymentError] = useState("");
+  const [pin, setPin] = useState("");
+  const [requiresPinSetup, setRequiresPinSetup] = useState(false);
 
-  // Load account and payment history on mount
+  // Load accounts and payment history on mount
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true);
         
-        // Fetch account for balance
+        // Fetch all accounts
         const accountsData = await fetchAccounts();
-        const primaryAccount = Array.isArray(accountsData) ? accountsData[0] : accountsData;
-        setAccount(primaryAccount);
+        const accountsArray = Array.isArray(accountsData) ? accountsData : [accountsData];
+        setAccounts(accountsArray);
+        
+        // Auto-select first account if available
+        if (accountsArray.length > 0) {
+          setSelectedAccount(accountsArray[0]);
+        }
 
         // Fetch payment history
         const historyData = await getPaymentHistory();
         setPaymentHistory(Array.isArray(historyData) ? historyData : []);
       } catch (err) {
         console.error("Error loading bills data:", err);
-        // Continue with loading even if API fails - show empty state
       } finally {
         setLoading(false);
       }
@@ -100,10 +107,11 @@ const Bills = () => {
   };
 
   const handleProceed = () => {
+    if (!selectedAccount)                    { setError("Please select an account."); return; }
     if (!selectedBiller)                    { setError("Please select a biller."); return; }
     if (!form.customerRef.trim())           { setError("Please enter your customer/meter/phone reference."); return; }
     if (!form.amount || Number(form.amount) <= 0) { setError("Please enter a valid amount."); return; }
-    if (account && Number(form.amount) > account.balance){ setError("Insufficient balance."); return; }
+    if (selectedAccount && Number(form.amount) > selectedAccount.balance){ setError("Insufficient balance."); return; }
     setError("");
     setStep(STEPS.CONFIRM);
   };
@@ -114,25 +122,51 @@ const Bills = () => {
     setPaymentError("");
     try {
       const payload = {
+        accountNumber: selectedAccount.accountNumber,
         billerId: selectedBiller.id,
         billerCode: selectedBiller.code,
         customerReference: form.customerRef,
         amount: Number(form.amount),
+        pin: pin,
       };
       const response = await payBill(payload);
       setReference(response.reference || response.referenceNumber || "N/A");
       setStep(STEPS.SUCCESS);
       
-      // Refresh payment history
+      // Refresh accounts and payment history
+      const accountsData = await fetchAccounts();
+      const accountsArray = Array.isArray(accountsData) ? accountsData : [accountsData];
+      setAccounts(accountsArray);
+      setSelectedAccount(accountsArray.find(a => a.accountNumber === selectedAccount.accountNumber) || accountsArray[0]);
+      
       const historyData = await getPaymentHistory();
       setPaymentHistory(Array.isArray(historyData) ? historyData : []);
     } catch (err) {
       console.error("Payment error:", err);
-      setPaymentError(err.response?.data?.message || "Payment failed. Please try again.");
-      setStep(STEPS.ERROR);
+      const errorData = err.response?.data;
+      if (errorData?.requiresPinSetup) {
+        setRequiresPinSetup(true);
+        setPaymentError(errorData.message || "Please set up your transaction PIN first.");
+        setStep(STEPS.ERROR);
+      } else if (errorData?.requiresPin) {
+        setPaymentError(errorData.message || "Please enter your transaction PIN.");
+      } else {
+        setPaymentError(err.response?.data?.message || "Payment failed. Please try again.");
+        setStep(STEPS.ERROR);
+      }
     } finally {
       setPaymentLoading(false);
     }
+  };
+
+  const handleSetPin = () => {
+    window.location.href = "/security";
+  };
+
+  const handlePinChange = (e) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 4);
+    setPin(value);
+    setError("");
   };
 
   const handleReset = () => {
@@ -187,24 +221,60 @@ const Bills = () => {
                 </div>
               )}
 
+              {/* Account Selection */}
+              <label className="sfa-label mb-2">Select Account</label>
+              <div className="mb-4">
+                <select
+                  className="sfa-field"
+                  style={{ 
+                    width: "100%", 
+                    border: "1.5px solid var(--border)", 
+                    borderRadius: "var(--radius-sm)", 
+                    padding: "0.75rem", 
+                    background: "#fafbfc",
+                    fontSize: "0.9rem",
+                    color: "var(--text)",
+                    cursor: "pointer"
+                  }}
+                  value={selectedAccount?._id || selectedAccount?.accountNumber || ""}
+                  onChange={(e) => {
+                    const account = accounts.find(a => a._id === e.target.value || a.accountNumber === e.target.value);
+                    setSelectedAccount(account);
+                    setError("");
+                  }}
+                >
+                  <option value="">Select an account</option>
+                  {accounts.map((acc) => (
+                    <option key={acc._id || acc.accountNumber} value={acc._id || acc.accountNumber}>
+                      {acc.accountType || "Account"} - {acc.accountNumber} (₦{formatCurrency(acc.balance)})
+                    </option>
+                  ))}
+                </select>
+                {selectedAccount && (
+                  <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: "0.3rem" }}>
+                    Available balance: {formatCurrency(selectedAccount.balance)}
+                  </div>
+                )}
+              </div>
+
               
               <label className="sfa-label mb-2">Category</label>
               <div className="row g-2 mb-4">
                 {billerCategories.map((cat) => (
-                  <div key={cat.id} className="col-4 col-sm-3 col-md-2 col-lg-3">
+                  <div key={cat.id} className="col-4 col-sm-3 col-md-2">
                     <button
                       onClick={() => handleCategorySelect(cat.id)}
                       style={{
                         width: "100%", border: "1.5px solid",
                         borderColor: category === cat.id ? "var(--gold)" : "var(--border)",
-                        borderRadius: "var(--radius)", padding: "0.75rem 0.5rem",
+                        borderRadius: "var(--radius)", padding: "0.6rem 0.4rem",
                         background: category === cat.id ? "var(--gold-bg)" : "white",
                         cursor: "pointer", textAlign: "center",
                         transition: "all 0.18s ease",
                       }}
                     >
-                      <i className={`fas ${cat.icon}`} style={{ fontSize: "1.3rem", color: category === cat.id ? "var(--gold-dark)" : cat.color, display: "block", marginBottom: "0.3rem" }}></i>
-                      <span style={{ fontSize: "0.72rem", fontWeight: 600, color: category === cat.id ? "var(--gold-dark)" : "var(--text-3)" }}>{cat.label}</span>
+                      <i className={`fas ${cat.icon}`} style={{ fontSize: "1.1rem", color: category === cat.id ? "var(--gold-dark)" : cat.color, display: "block", marginBottom: "0.25rem" }}></i>
+                      <span style={{ fontSize: "0.65rem", fontWeight: 600, color: category === cat.id ? "var(--gold-dark)" : "var(--text-3)", display: "block", lineHeight: 1.2 }}>{cat.label}</span>
                     </button>
                   </div>
                 ))}
@@ -274,9 +344,9 @@ const Bills = () => {
                         min="1"
                       />
                     </div>
-                    {form.amount > 0 && account && (
+                    {form.amount > 0 && selectedAccount && (
                       <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: "0.3rem" }}>
-                        Available balance: {formatCurrency(account.balance)}
+                        Available balance: {formatCurrency(selectedAccount.balance)}
                       </div>
                     )}
                   </div>
@@ -316,7 +386,7 @@ const Bills = () => {
                   { label: "Biller",      value: selectedBiller?.name },
                   { label: "Reference",   value: form.customerRef     },
                   { label: "Amount",      value: formatCurrency(Number(form.amount)) },
-                  { label: "From",        value: account?.accountNumber || "N/A" },
+                  { label: "From Account", value: selectedAccount?.accountNumber || "N/A" },
                 ].map(({ label, value }) => (
                   <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "0.5rem 0", borderBottom: "1px solid var(--border-light)", fontSize: "0.86rem" }}>
                     <span style={{ color: "var(--text-muted)" }}>{label}</span>
@@ -328,6 +398,23 @@ const Bills = () => {
               <div className="sfa-notice mb-4">
                 <i className="fas fa-info-circle" style={{ color: "var(--gold)", flexShrink: 0 }}></i>
                 Bill payments are processed instantly. Please verify all details before confirming.
+              </div>
+
+              {/* PIN Input */}
+              <div className="mb-4">
+                <label className="sfa-label">Enter Transaction PIN</label>
+                <div className="sfa-input-group">
+                  <span className="sfa-input-icon"><i className="fas fa-lock"></i></span>
+                  <input
+                    type="password"
+                    className="sfa-field"
+                    placeholder="••••"
+                    value={pin}
+                    onChange={handlePinChange}
+                    maxLength={4}
+                    style={{ letterSpacing: "0.3rem", textAlign: "center", fontWeight: 700 }}
+                  />
+                </div>
               </div>
 
               <div className="d-flex gap-3">

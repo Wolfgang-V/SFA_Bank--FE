@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
+import PageLoader from "./components/pageLoader";
 
 // Public Pages
 import Landing from "./pages/Landing";
@@ -17,20 +18,32 @@ import Settings from "./pages/Settings";
 import Security from "./pages/Security";
 
 // Layout
+import { useState } from "react";
 import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
 
 import "./App.css";
 
-// Layout wrapper for all dashboard/protected pages
+// Initial loading component shown while auth is checking
+const InitialLoader = () => {
+  const { loading } = useAuth();
+  
+  if (loading) {
+    return <PageLoader text="Loading SFA Bank..." />;
+  }
+  
+  return null;
+};
+
 // Layout wrapper for all dashboard/protected pages
 const DashboardLayout = ({ children }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="d-flex flex-column flex-lg-row" style={{ minHeight: "calc(100vh - 64px)" }}>
-      <div className="d-none d-lg-flex" style={{ width: 240, flexShrink: 0 }}>
-        <Sidebar />
-      </div>
-      <div className="flex-lg-grow-1 d-flex flex-column w-100">
+    <div className="d-flex flex-column flex-lg-row" style={{ minHeight: "100vh" }}>
+      <Sidebar isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+      <div className="flex-lg-grow-1 d-flex flex-column w-100 main-content">
+        <Navbar onMenuToggle={() => setMenuOpen(!menuOpen)} menuOpen={menuOpen} />
         <main className="flex-grow-1 p-3 p-md-4 bg-light overflow-auto">
           {children}
         </main>
@@ -42,6 +55,7 @@ const DashboardLayout = ({ children }) => {
 function App() {
   return (
     <AuthProvider>
+      <InitialLoader />
       <Router>
         <Routes>
 

@@ -647,14 +647,24 @@ img { max-width: 100%; }
   position: fixed;
   top: 0; left: 0;
   z-index: 200;
-  transition: transform 0.28s ease;
+  transition: transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-@media (max-width: 991px) {
+@media (min-width: 992px) {
+  .sfa-sidebar {
+    transform: none !important;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+}
+@media (max-width: 991.98px) {
   .sfa-sidebar {
     transform: translateX(-100%);
     box-shadow: var(--shadow-lg);
+    width: 280px;
+    max-width: 85vw;
   }
-  .sfa-sidebar.open { transform: translateX(0); }
+  .sfa-sidebar.open { 
+    transform: translateX(0); 
+  }
 }
 
 .sfa-sidebar-overlay {
@@ -663,10 +673,17 @@ img { max-width: 100%; }
   inset: 0;
   background: rgba(0,0,0,0.55);
   z-index: 199;
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
-.sfa-sidebar-overlay.active { display: block; }
+@media (max-width: 991.98px) {
+  .sfa-sidebar-overlay.active { 
+    display: block; 
+  }
+}
+@media (min-width: 992px) {
+  .sfa-sidebar-overlay { display: none !important; }
+}
 
 
 .sfa-sidebar-brand {
@@ -775,14 +792,23 @@ img { max-width: 100%; }
 }
 
 
-.sfa-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+.main-content {
+  transition: margin-left 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 @media (min-width: 992px) {
-  .sfa-main { margin-left: var(--sidebar-width); }
+  .main-content { 
+    margin-left: var(--sidebar-width); 
+  }
+}
+@media (max-width: 991.98px) {
+  .main-content { 
+    width: 100%;
+    position: relative;
+    z-index: 10;
+  }
+  .main-content:has(.sfa-sidebar.open) ~ .sfa-sidebar {
+    z-index: 201;
+  }
 }
 
 .sfa-navbar {
@@ -795,7 +821,7 @@ img { max-width: 100%; }
   padding: 0 1rem;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 150;
   gap: 0.75rem;
 }
 @media (min-width: 768px) { .sfa-navbar { padding: 0 1.5rem; } }
@@ -1128,27 +1154,35 @@ img { max-width: 100%; }
 
 
 @media (max-width: 479px) {
+  html, body {
+    overflow-x: hidden;
+  }
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  .p-3 { padding: 0.75rem !important; }
+  .p-md-4 { padding: 1rem !important; }
+  h1 { font-size: 1.5rem !important; }
+  h2 { font-size: 1.25rem !important; }
+  h3 { font-size: 1.1rem !important; }
 
-  h1 { font-size: 1.75rem !important; }
-  h2 { font-size: 1.4rem !important; }
-  h3 { font-size: 1.15rem !important; }
+  .btn, .sfa-btn-primary, .sfa-btn-outline {
+    min-height: 44px;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.88rem;
+  }
 
-  .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
-
-  .sfa-hero-title { font-size: 1.8rem; }
-  .sfa-hero-desc { font-size: 0.95rem; }
+  .sfa-hero-title { font-size: 1.6rem; }
+  .sfa-hero-desc { font-size: 0.92rem; }
 
   .sfa-feature-card { margin-bottom: 1rem; }
 
-  .gap-3 { gap: 1rem !important; }
-  .gap-4 { gap: 1.25rem !important; }
+  .gap-3 { gap: 0.875rem !important; }
+  .gap-4 { gap: 1rem !important; }
 
-  .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
-  .py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+  .px-4 { padding-left: 0.875rem !important; padding-right: 0.875rem !important; }
+  .py-5 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
 }
 
 
