@@ -60,8 +60,20 @@ export async function lookupAccount(accountNumber) {
   return response.data?.data || response.data;
 }
 
+// Deposit to account
+export async function depositAccount(accountNumber, amount) {
+  const response = await api.post('/accounts/deposit', { 
+    accountNumber, 
+    amount: Number(amount) 
+  });
+  console.log("Deposit response:", response.data);
+  return response.data;
+}
+
 export default {
   fetchAccounts,
   fetchAccountById,
   lookupAccount,
+  depositAccount,
 };
+

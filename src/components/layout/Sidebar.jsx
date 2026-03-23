@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 const navItems = [
   { to: "/dashboard", label: "Dashboard", icon: "fa-th"    },
   { to: "/accounts",  label: "Accounts",  icon: "fa-wallet"           },
+  { to: "/deposit",  label: "Deposit",   icon: "fa-piggy-bank" },
   { to: "/transfer",  label: "Transfer",  icon: "fa-exchange-alt"  },
   { to: "/bills",     label: "Bills",     icon: "fa-receipt"    },
   { to: "/settings",  label: "Settings",  icon: "fa-cog"         },

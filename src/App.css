@@ -939,7 +939,7 @@ img { max-width: 100%; }
 .sfa-hero {
   background:
     linear-gradient(rgba(14, 12, 7, 0.7), rgba(14, 12, 7, 0.7)),
-    url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlbxfyr6B4Iwz1yc6QgEJ2UWLW3PZnfa0BIQ&s');
+    url('https://media.istockphoto.com/id/2148549466/photo/golden-bank-vault-door-open.jpg?s=612x612&w=0&k=20&c=W15_AAGQvzlnfQ62xz01Ad7VUlnb7lXVo-1GeoG_GzI=');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1037,17 +1037,22 @@ img { max-width: 100%; }
   padding: 1.4rem;
   color: #fff;
   box-shadow: var(--shadow-gold-lg);
-  margin-bottom: 0.85rem;
   border: 1px solid rgba(255,255,255,0.1);
 }
+
 .sfa-mock-transactions {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(201,168,76,0.15);
   border-radius: var(--radius);
   padding: 0.6rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
 }
+
 .sfa-mock-tx {
   display: flex;
   align-items: center;
@@ -1057,7 +1062,10 @@ img { max-width: 100%; }
   color: rgba(255,255,255,0.75);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-.sfa-mock-tx:last-child { border-bottom: none; }
+
+.sfa-mock-tx:last-child { 
+  border-bottom: none; 
+}
 
 
 .sfa-features { background: var(--bg); }

@@ -16,6 +16,7 @@ import Transfer from "./pages/Transfer";
 import Bills from "./pages/Bills";
 import Settings from "./pages/Settings";
 import Security from "./pages/Security";
+import Deposit from "./pages/Deposit";
 
 // Layout
 import { useState } from "react";
@@ -24,18 +25,14 @@ import Sidebar from "./components/layout/Sidebar";
 
 import "./App.css";
 
-// Initial loading component shown while auth is checking
 const InitialLoader = () => {
   const { loading } = useAuth();
-  
   if (loading) {
     return <PageLoader text="Loading SFA Bank..." />;
   }
-  
   return null;
 };
 
-// Layout wrapper for all dashboard/protected pages
 const DashboardLayout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -59,66 +56,24 @@ function App() {
       <Router>
         <Routes>
 
-{/* ─── PUBLIC ROUTES ─── */}
+          {/* ─── PUBLIC ROUTES ─── */}
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
-          {/* ─── PROTECTED ROUTES (must be logged in) ─── */}
+          {/* ─── PROTECTED ROUTES ─── */}
           <Route element={<ProtectedRoute />}>
-            <Route
-              path="/dashboard"
-              element={
-                <DashboardLayout>
-                  <Dashboard />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/accounts"
-              element={
-                <DashboardLayout>
-                  <Accounts />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/transfer"
-              element={
-                <DashboardLayout>
-                  <Transfer />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/bills"
-              element={
-                <DashboardLayout>
-                  <Bills />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <DashboardLayout>
-                  <Settings />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/security"
-              element={
-                <DashboardLayout>
-                  <Security />
-                </DashboardLayout>
-              }
-            />
+            <Route path="/dashboard" element={<DashboardLayout><Dashboard /></DashboardLayout>} />
+            <Route path="/accounts" element={<DashboardLayout><Accounts /></DashboardLayout>} />
+            <Route path="/transfer" element={<DashboardLayout><Transfer /></DashboardLayout>} />
+            <Route path="/bills" element={<DashboardLayout><Bills /></DashboardLayout>} />
+            <Route path="/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
+            <Route path="/security" element={<DashboardLayout><Security /></DashboardLayout>} />
+            <Route path="/deposit" element={<DashboardLayout><Deposit /></DashboardLayout>} />
           </Route>
 
           {/* ─── FALLBACK ─── */}
-          {/* Any unknown URL redirects to home */}
           <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>

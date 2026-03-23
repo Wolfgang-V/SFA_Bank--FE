@@ -126,7 +126,7 @@ const Landing = () => {
             <h2 className="sfa-section-title">Everything you need</h2>
             <p className="sfa-section-sub">Powerful banking features in one place</p>
           </div>
-          <div className="row g-4">
+          <div className="row g-5">
             {features.map((f, i) => (
               <div key={i} className="col-sm-6 col-lg-3">
                 <div className="sfa-feature-card h-100">

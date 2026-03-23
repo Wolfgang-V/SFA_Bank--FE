@@ -9,10 +9,19 @@ export const formatCurrency = (amount, currency = "NGN") => {
 
 
 export const formatDate = (dateString) => {
-  return new Intl.DateTimeFormat("en-NG", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(new Date(dateString));
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return "Invalid date";
+    }
+    return new Intl.DateTimeFormat("en-NG", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(date);
+  } catch (error) {
+    console.warn("Invalid date format:", dateString);
+    return "Recent";
+  }
 };
 
 
