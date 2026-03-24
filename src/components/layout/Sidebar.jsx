@@ -43,7 +43,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         </div>
 
        
-        <nav className="flex-grow-1 overflow-auto" style={{ paddingBottom: "1rem" }}>
+        <nav className="flex-grow-1 overflow-auto sfa-padding-xs">
           <div className="sfa-nav-label">Main Menu</div>
 
           {navItems.map(({ to, label, icon }) => (
@@ -63,9 +63,28 @@ const Sidebar = ({ isOpen, onClose }) => {
 
         
         <div style={{ borderTop: "1px solid rgba(201,168,76,0.12)", paddingTop: "0.85rem" }}>
-         
-          <div style={{ padding: "0.5rem 1.1rem 0.75rem", display: "flex", alignItems: "center", gap: "0.65rem" }}>
-            <div
+          <div className="sfa-user-avatar sfa-padding-xs" style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
+            <div className="sfa-avatar-md"
+              style={{
+                background: "linear-gradient(135deg, var(--gold-dark), var(--gold-light))",
+                borderRadius: "50%",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontWeight: 700,
+                color: "var(--gold-deep)", flexShrink: 0,
+                border: "2px solid rgba(201,168,76,0.3)",
+              }}
+            >
+              {user?.username?.charAt(0).toUpperCase() || "U"}
+            </div>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: "0.82rem", fontWeight: 600, color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                {user?.fullName || user?.username || "User"}
+              </div>
+              <div style={{ fontSize: "0.7rem", color: "rgba(201,168,76,0.5)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                {user?.email || ""}
+              </div>
+            </div>
+          </div>
               style={{
                 width: 34, height: 34, borderRadius: "50%",
                 background: "linear-gradient(135deg, var(--gold-dark), var(--gold-light))",

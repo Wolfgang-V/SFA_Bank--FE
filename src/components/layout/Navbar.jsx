@@ -34,7 +34,9 @@ const Navbar = ({ onMenuToggle, menuOpen }) => {
 
         
         <div className="d-flex align-items-center gap-2 d-lg-none">
-          <div className="sfa-landing-logo-icon" style={{ width: 28, height: 28, fontSize: "0.85rem" }}>
+          <div className="sfa-landing-logo-icon sfa-avatar-xs">
+            <i className="fas fa-university"></i>
+          </div>
             <i className="fas fa-university"></i>
           </div>
           <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: "0.95rem", color: "var(--gold-dark)" }}>
